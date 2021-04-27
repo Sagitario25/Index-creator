@@ -15,7 +15,8 @@ def export (path):
 	mng.save (path)
 
 def buildXML (path):
-	open (path, "w").write (xmlBuilder.generate (mng.output ()))
+	xml = xmlBuilder.generate (mng.exportData ())
+	open (path, "w").write (xml)
 
 interpreter = command.Interpreter ()
 interpreter.addCommand ("addFeature", mng.addFeature)

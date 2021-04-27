@@ -18,6 +18,9 @@ class dataManager:
 	def output (self):
 		return  json.dumps (self.features)
 	
+	def exportData (self):
+		return self.features
+
 	def save (self, path):
 		open (path, "w").write (self.output ())
 
