@@ -18,13 +18,25 @@ def buildXML (path):
 	xml = xmlBuilder.generate (mng.exportData ())
 	open (path, "w").write (xml)
 
+def printer (toPrint):
+	if toPrint == "json":
+		print (mng.output ())
+	elif toPrint == "xml":
+		import xml.dom.minidom as minidom
+		xml = xmlBuilder.generate (mng.exportData ())
+		print (minidom.parseString (xml).toprettyxml ())
+
+def saver (toSave, path):
+	if toSave == "json":
+		mng.save (path)
+	elif toSave == "xml":
+		buildXML (path)
+
 interpreter = command.Interpreter ()
 interpreter.addCommand ("addFeature", mng.addFeature)
 interpreter.addCommand ("addVersion", mng.addVersion)
-interpreter.addCommand ("output", mng.output)
-interpreter.addCommand ("save", mng.save)
-interpreter.addCommand ("export", export)
-interpreter.addCommand ("buildXML", buildXML)
+interpreter.addCommand ("print", printer)
+interpreter.addCommand ("save", saver)
 
 if __name__ == "__main__":
 	while True:

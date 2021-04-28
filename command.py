@@ -29,12 +29,16 @@ class Interpreter:
 			self.command = self.commands [self.args [0]]#Asign the command
 			try:
 				self.returned = self.command (*self.args[1:])#Call the command and pass the arguments
-				if self.returned != None:
+				if type (self.returned) == type (None):
+					pass
+				elif type (self.returned) == type ([]):
+					print ("list:")
+					for i in self.returned: print (i)
+				else:
 					print (self.returned)
-				return self.returned
-			except Exception as inst:#An error ocurred executing the command
-				print (inst)#Print error info
-		except Exception as inst:#Failing preparing the command
+			except Exception as inst:
+				print (inst)
+		except Exception as inst:
 			print (inst)
 			print ("Usually this is caused because you didnt import that command")
 
