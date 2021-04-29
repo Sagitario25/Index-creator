@@ -38,8 +38,15 @@ def adder (toAdd, feature, versionNumber, url):
 	elif toAdd == "version":
 		mng.addVersion (feature, versionNumber, url)
 
+def remover (toRemove, name, number):
+	if toRemove == "feature":
+		mng.removeFeature (name)
+	elif toRemove == "version":
+		mng.removeVersion (name, number)
+
 interpreter = command.Interpreter ()
 interpreter.addCommand ("add", adder)
+interpreter.addCommand ("rm", remover)
 interpreter.addCommand ("print", printer)
 interpreter.addCommand ("save", saver)
 

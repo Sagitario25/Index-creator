@@ -15,6 +15,12 @@ class dataManager:
 		
 		self.features [feature][versionNumber] = url
 	
+	def removeFeature (self, featureName):
+		del self.features [featureName]
+	
+	def removeVersion (self, featureName, versionNumber):
+		del self.features [featureName][versionNumber]
+
 	def output (self):
 		return  json.dumps (self.features)
 	
