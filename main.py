@@ -32,9 +32,14 @@ def saver (toSave, path):
 	elif toSave == "xml":
 		buildXML (path)
 
+def adder (toAdd, feature, versionNumber, url):
+	if toAdd == "feature":
+		mng.addFeature (feature)
+	elif toAdd == "version":
+		mng.addVersion (feature, versionNumber, url)
+
 interpreter = command.Interpreter ()
-interpreter.addCommand ("addFeature", mng.addFeature)
-interpreter.addCommand ("addVersion", mng.addVersion)
+interpreter.addCommand ("add", adder)
 interpreter.addCommand ("print", printer)
 interpreter.addCommand ("save", saver)
 
